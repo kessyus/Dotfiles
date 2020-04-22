@@ -1,7 +1,6 @@
 syntax on
-"filetype plugin indent on
 
-"set background=dark
+set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 colorscheme solarized
@@ -66,14 +65,8 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 
-" Rustfmt autoformat on save
-let g:rustfmt_autosave = 1
-
 
 " Remap Personal Keyboardi
-
-" Set mapleader
-let mapleader = "\\"
 
 "Back to normal mode
 inoremap jk <Esc>
@@ -84,9 +77,9 @@ nnoremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 22
 
 " Switch tabs
-map <Leader>; <Esc>:tabnew<CR>
-map <Leader>, gT
-map <Leader>. gt
+map <Leader>8 <Esc>:tabnew<CR>
+map <Leader>9 gT
+map <Leader>0 gt
 
 " Open file under cursor in new tab
 map <F3> <Esc><C-W>gF<CR>:tabm<CR>

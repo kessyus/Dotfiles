@@ -1,0 +1,115 @@
+"execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
+
+"
+" Settings
+"
+set noerrorbells                " No beeps
+set number                      " Show line numbers
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+set showcmd                     " Show me what I'm typing
+set showmode                    " Show current mode.
+set title                       " Show title of the file on term window
+set wildmenu
+set mouse=a                     " Enable the use of the mouse
+set shortmess+=A                " Don't show annoying msg when theres a swap file
+set noswapfile                  " Don't use swapfile
+set nobackup                    " Don't create annoying backup files
+set nowritebackup
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set encoding=utf-8              " Set default encoding to UTF-8
+set autowrite                   " Automatically save before :next, :make etc.
+set autochdir                   " Autochange working directory based on current file
+set autoread                    " Automatically reread changed files without asking me anything
+set laststatus=2
+set hidden
+set ruler                       " Show the cursor position all the time
+set incsearch                   " Shows the match while typing
+set hlsearch                    " Highlight found searches
+set ignorecase                  " Search case insensitive...
+set smartcase                   " ... but not when search pattern contains upper case characters
+set path+=**                    " Search down into subfolders
+set wildmenu                    " Display all matching files when tab complete
+set ttyfast
+
+" do not hide markdown
+set conceallevel=0
+
+" Make Vim to handle long lines nicely.
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+autocmd BufNewFile,BufRead *.html setlocal nowrap   " Wrapping off whenever working on an HTML file
+
+" mail line wrapping
+au BufRead /tmp/mutt-* set tw=72
+
+set autoindent                  " Copy indent from current line to the next line
+set complete-=i
+set showmatch                   " When a bracket is inserted show the match
+set smarttab
+
+set et
+set tabstop=2                   " Number of spaces that a <Tab>
+set shiftwidth=2                " Number of spaces to use for each step autoindent
+set expandtab                   " Use the appropriate number of spaces
+
+
+" Airline config
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='powerlineish'
+
+" Rustfmt autoformat on save
+let g:rustfmt_autosave = 1
+
+
+" Remap Personal Keyboardi
+
+" Set mapleader
+let mapleader = "\\"
+
+"Back to normal mode
+inoremap jk <Esc>
+
+" Toggle Nerdtree
+nnoremap <F2> :NERDTreeToggle<CR>
+" autocmd vimenter * NERDTree   " Show Nerdtree on open
+let g:NERDTreeWinSize = 22
+
+" Switch tabs
+map <Leader>; <Esc>:tabnew<CR>
+map <Leader>, gT
+map <Leader>. gt
+
+" Open file under cursor in new tab
+map <F3> <Esc><C-W>gF<CR>:tabm<CR>
+
+" Competitive Programming
+map <F6> <Esc>:%y+<CR>
+map <F7> <Esc>:tabnew input.txt<CR>
+map <F8> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14<CR>
+map <F9> <Esc>:!clear; ./%:r < input.txt<CR>
+
+" Direction keys for wrapped lines
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
+
+" Tabs and Shift Tabs works like other editors
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Snippets
+nnoremap ,cpp :-1read $HOME/.vim/snippets/solve.cpp<CR>12j

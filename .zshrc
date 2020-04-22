@@ -31,9 +31,9 @@ export EDITOR='vim'
 ### theme ###
 #
 # Local theme
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="agnoster"
-# DEFAULT_USER=kessyus
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+DEFAULT_USER=kessyus
 
 
 ### functions ####

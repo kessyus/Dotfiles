@@ -44,3 +44,4 @@ install tmux
 # Link dotfiles
 linkDotfile .vim
 linkDotfile .zshrc
+linkDotfile .config

@@ -1,0 +1,6 @@
+total 0
+drwxr-xr-x  23 kessyus  staff   736B Apr 13 21:56 rust.vim
+drwxr-xr-x  10 kessyus  staff   320B Apr 13 21:47 tabular
+drwxr-xr-x  13 kessyus  staff   416B Apr 13 21:46 vim-fugitive
+drwxr-xr-x  31 kessyus  staff   992B Apr 13 21:56 vim-go
+drwxr-xr-x   6 kessyus  staff   192B Mar 19 19:57 vim-sensible

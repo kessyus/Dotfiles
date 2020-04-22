@@ -40,6 +40,7 @@ function install {
 # Install Apps
 install vim
 install tmux
+install alacritty
 
 # Link dotfiles
 linkDotfile .vim

@@ -15,7 +15,7 @@
 
 ### About
 
-This repo is used to store my personal configuration (dotfiles). Please note it's meant to be used on a macOS platform.
+This repository is used to store my personal configuration (dotfiles). Please note it's meant to be used on a macOS platform.
 
 
 ### Installing
@@ -36,7 +36,7 @@ Custom 'vimrc' with few plugins, snippets and hotkeys configured.
 
 #### `.config/alacritty`
 
-Custom alacritty terminal definitions (fonts, etc.).
+Custom alacritty terminal config (fonts, etc.).
 
 #### `.oh-my-zsh`
 

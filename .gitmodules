@@ -1,3 +1,18 @@
 [submodule "vim/pack/kessyus/start/vim-airline"]
 	path = vim/pack/kessyus/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim/pack/kessyus/start/vim-colors-solarized"]
+	path = vim/pack/kessyus/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/pack/kessyus/start/auto-pairs"]
+	path = vim/pack/kessyus/start/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "vim/pack/kessyus/start/nerdtree"]
+	path = vim/pack/kessyus/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "vim/pack/kessyus/start/nerdcommenter"]
+	path = vim/pack/kessyus/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+[submodule "vim/pack/kessyus/start/vim-airline-themes"]
+	path = vim/pack/kessyus/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git

@@ -50,6 +50,13 @@ function vimod {
     vim -p $(git status -suall | awk '{print $2}')
 }
 
+# Add Commit Push at once
+function acp() {
+  git add .
+  git commit -m "$1"
+  git push
+}
+
 # Open files modified in a git commit in vim tabs; defaults to HEAD.
 # Examples: 
 #     virev 49808d5

@@ -77,18 +77,21 @@ nnoremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 22
 
 " Switch tabs
-map <Leader>8 <Esc>:tabnew<CR>
-map <Leader>9 gT
-map <Leader>0 gt
+map <F8> <Esc>:tabnew<CR>
+map <F7> gT
+map <F9> gt
 
 " Open file under cursor in new tab
 map <F3> <Esc><C-W>gF<CR>:tabm<CR>
 
 " Competitive Programming
-map <F6> <Esc>:%y+<CR>
-map <F7> <Esc>:tabnew input.txt<CR>
-map <F8> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14<CR>
-map <F9> <Esc>:!clear; ./%:r < input.txt<CR>
+autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
+autocmd filetype cpp nnoremap <F5> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14 -Wall<CR>
+autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
+
+" Programming
+autocmd filetype python nnoremap <F5> :w!<CR>:!clear; python3 %<CR>
+autocmd filetype go nnoremap <F5> :w!<CR>:!clear; go build % && ./%:r<CR>
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk

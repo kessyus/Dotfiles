@@ -46,5 +46,6 @@ install alacritty
 # Link dotfiles
 linkDotfile .vim
 linkDotfile .zshrc
+linkDotfile .gitconfig
 linkDotfile .config
 linkDotfile .p10k.zsh

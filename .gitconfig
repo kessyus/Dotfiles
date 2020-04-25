@@ -1,0 +1,17 @@
+[user]
+	name = Kessyus Fófano
+	email = kessyus@gmail.com
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[color "status"]
+  added = green
+  changed = blue
+  untracked = red 
+[color "diff"]
+  meta = yellow
+  old = red 
+  new = green
+[push]
+  default = current

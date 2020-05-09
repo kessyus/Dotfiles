@@ -10,6 +10,7 @@ colorscheme solarized
 "
 set noerrorbells                " No beeps
 set number                      " Show line numbers
+set relativenumber              " Relative line numbers 
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
@@ -46,9 +47,6 @@ set textwidth=79
 set formatoptions=qrn1
 autocmd BufNewFile,BufRead *.html setlocal nowrap   " Wrapping off whenever working on an HTML file
 
-" mail line wrapping
-au BufRead /tmp/mutt-* set tw=72
-
 set autoindent                  " Copy indent from current line to the next line
 set complete-=i
 set showmatch                   " When a bracket is inserted show the match
@@ -67,9 +65,6 @@ let g:airline_theme='powerlineish'
 
 
 " Remap Personal Keyboardi
-
-"Back to normal mode
-inoremap jk <Esc>
 
 " Toggle Nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>

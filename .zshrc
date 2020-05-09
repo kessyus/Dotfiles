@@ -15,7 +15,8 @@ alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
 alias fd="find . -type d 2>/dev/null -name"
 alias ff="find . -type f 2>/dev/null -name"
-
+#alias kes="cd ~/Scripts/go/src/github.com/kessyus"
+alias kes="cd ~/Scripts/cpp/contests/"
 
 ### exports ###
 #
@@ -51,6 +52,8 @@ function vimod {
 }
 
 # Add Commit Push at once
+# Usage:
+# acp "commit message"
 function acp() {
   git add .
   git commit -m "$1"

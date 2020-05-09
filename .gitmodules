@@ -19,3 +19,12 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule ".vim/pack/kessyus/start/vim-fugitive"]
+	path = .vim/pack/kessyus/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/pack/kessyus/start/vim-go"]
+	path = .vim/pack/kessyus/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/kessyus/start/rust.vim"]
+	path = .vim/pack/kessyus/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git

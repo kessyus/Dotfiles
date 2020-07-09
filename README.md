@@ -23,6 +23,7 @@ This repository is used to store my personal configuration (dotfiles). Please no
 ```console
 $ mkdir ~/.dotfiles
 $ git clone https://github.com/kessyus/dotfiles.git ~/.dotfiles
+$ cd .dotfiles
 $ ./setup
 ```
 

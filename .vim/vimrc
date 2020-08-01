@@ -64,7 +64,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 
 
-" Remap Personal Keyboardi
+" Remap Personal Keyboard
 
 " Toggle Nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>

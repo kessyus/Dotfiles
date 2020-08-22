@@ -35,10 +35,6 @@ The 'setup' script will create symlinks and install a few applications using hom
 
 Custom 'vimrc' with few plugins, snippets and hotkeys configured.
 
-#### `.config/alacritty`
-
-Custom alacritty terminal config (fonts, etc.).
-
 #### `.oh-my-zsh`
 
 Since macOS Catalina 'zsh' is the default shell. This plugin adds some custom theme support.

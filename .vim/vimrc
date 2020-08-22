@@ -66,11 +66,6 @@ let g:airline_theme='powerlineish'
 
 " Remap Personal Keyboard
 
-" Toggle Nerdtree
-nnoremap <F2> :NERDTreeToggle<CR>
-" autocmd vimenter * NERDTree   " Show Nerdtree on open
-let g:NERDTreeWinSize = 22
-
 " Switch tabs
 map <F8> <Esc>:tabnew<CR>
 map <F7> gT
@@ -80,9 +75,9 @@ map <F9> gt
 map <F3> <Esc><C-W>gF<CR>:tabm<CR>
 
 " Competitive Programming
-autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
-autocmd filetype cpp nnoremap <F5> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14 -Wall<CR>
-autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
+"autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
+"autocmd filetype cpp nnoremap <F5> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14 -Wall<CR>
+"autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
 
 " Programming
 autocmd filetype python nnoremap <F5> :w!<CR>:!clear; python3 %<CR>
@@ -103,4 +98,4 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 " Snippets
-nnoremap ,cpp :-1read $HOME/.vim/snippets/solve.cpp<CR>12j
+"nnoremap ,cpp :-1read $HOME/.vim/snippets/solve.cpp<CR>12j

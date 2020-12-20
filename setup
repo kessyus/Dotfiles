@@ -41,7 +41,7 @@ function install {
 install vim
 install tmux
 install alacritty
-#install romkatv/powerlevel10k/powerlevel10k
+install romkatv/powerlevel10k/powerlevel10k
 
 # Link dotfiles
 linkDotfile .vim

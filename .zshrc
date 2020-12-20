@@ -20,9 +20,9 @@ alias kes="cd ~/Scripts/go/src/github.com/kessyus"
 ### exports ###
 #
 # Path
-export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/Library/Python/3.7/bin:$HOME/.config/flutter/bin:$PATH
+export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/Library/Python/3.7/bin:$PATH
 # Dotfiles
-export DOTFILES_PATH=$HOME/.dotfiles/
+export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
 export LD_LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
 # Golang

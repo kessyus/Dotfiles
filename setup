@@ -47,5 +47,7 @@ install romkatv/powerlevel10k/powerlevel10k
 linkDotfile .vim
 linkDotfile .zshrc
 linkDotfile .gitconfig
-#linkDotfile .config
 linkDotfile .p10k.zsh
+
+# Update Git Submodules
+git submodule update --init --recursive

@@ -20,6 +20,15 @@ This repository is used to store my personal configuration (dotfiles). Please no
 
 ### Installing
 
+The first time you need to run the following commands to install homebrew and oh-my-zsh.
+
+```console
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+After that run the commands below to pull my git dotfiles, install and configure the workspace.
+
 ```console
 $ mkdir ~/.dotfiles
 $ git clone https://github.com/kessyus/dotfiles.git ~/.dotfiles

@@ -19,7 +19,7 @@ alias ff="find . -type f 2>/dev/null -name"
 ### exports ###
 #
 # Path
-export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/Library/Python/3.7/bin:$HOME/usr/local/opt/node@14/bin:"
+export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/Library/Python/3.7/bin:$HOME/usr/local/opt/node@14/bin:$PATH
 # Dotfiles
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib

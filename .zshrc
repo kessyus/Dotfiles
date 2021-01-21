@@ -15,7 +15,6 @@ alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
 alias fd="find . -type d 2>/dev/null -name"
 alias ff="find . -type f 2>/dev/null -name"
-alias kes="cd ~/Scripts/go/src/github.com/kessyus"
 
 ### exports ###
 #
@@ -107,3 +106,4 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH="/usr/local/opt/node@14/bin:$PATH"

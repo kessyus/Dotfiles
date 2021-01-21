@@ -1,9 +1,9 @@
 syntax on
 
-set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 colorscheme solarized
+set background=dark
 
 "
 " Settings
@@ -80,9 +80,13 @@ map <F3> <Esc><C-W>gF<CR>:tabm<CR>
 "autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
 
 " Programming
-autocmd filetype python nnoremap <F5> :w!<CR>:!clear; python3 %<CR>
-autocmd filetype go nnoremap <F5> :w!<CR>:!clear; go build % && ./%:r<CR>
-autocmd filetype java nnoremap <F5> :w!<CR>:!clear; javac %<CR>
+autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
+autocmd filetype go nnoremap <F5> <Esc>:w!<CR>:!clear; go build % && ./%:r<CR>
+autocmd filetype java nnoremap <F5> <Esc>:w!<CR>:!clear; javac %<CR>
+" Compile
+autocmd filetype cpp nnoremap <F4> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++17 -Wall;<CR>
+" Run
+autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk

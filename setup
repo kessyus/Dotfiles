@@ -40,6 +40,7 @@ function install {
 # Install Apps
 install vim
 install tmux
+install iterm2
 install romkatv/powerlevel10k/powerlevel10k
 
 # Link dotfiles

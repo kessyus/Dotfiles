@@ -8,7 +8,7 @@
   * [About](#about)
   * [Installing](#installing)
   * [Folders](#folders)
-  * [Final Look](#finallook)
+  * [Screenshot](#screenshot)
 
 <!-- tocstop -->
 
@@ -49,7 +49,7 @@ Custom 'vimrc' with few plugins, snippets and hotkeys configured.
 
 Since macOS Catalina 'zsh' is the default shell. This plugin adds some custom theme support.
 
-### Final Look
+### Screenshot
 
 The final version of your terminal should look like this:
 ![image](https://github.com/kessyus/dotfiles/blob/master/media/iTerm2.png?raw=true)

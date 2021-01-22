@@ -52,4 +52,4 @@ Since macOS Catalina 'zsh' is the default shell. This plugin adds some custom th
 ### Final Look
 
 The final version of your terminal should look like this:
-![image]()
+![image](https://github.com/kessyus/dotfiles/blob/master/media/iTerm2.png?raw=true)

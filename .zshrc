@@ -32,7 +32,8 @@ export ZSH="$DOTFILES_PATH/.oh-my-zsh"
 export LANG=en_US.UTF-8
 # Default Editor
 export EDITOR='vim'
-
+# NodeJS testing port
+export PORT='3001'
 
 ### theme ###
 #

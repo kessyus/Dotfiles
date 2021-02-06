@@ -28,3 +28,12 @@
 [submodule ".vim/pack/kessyus/start/vim-prettier"]
 	path = .vim/pack/kessyus/start/vim-prettier
 	url = https://github.com/prettier/vim-prettier.git
+[submodule ".vim/pack/kessyus/start/emmet-vim"]
+	path = .vim/pack/kessyus/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule ".vim/pack/kessyus/start/nerdcommenter"]
+	path = .vim/pack/kessyus/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+[submodule ".vim/pack/kessyus/start/vim-javascript"]
+	path = .vim/pack/kessyus/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git

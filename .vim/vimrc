@@ -63,16 +63,30 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 
+" Enable Prettier
+packloadal
 
 " Remap Personal Keyboard
 
-" Switch tabs
-map <F8> <Esc>:tabnew<CR>
-map <F7> gT
-map <F9> gt
+" Faster leaving to normal mode
+inoremap jk <ESC>
+
+" Useful for tabs
+noremap <S-h> gT
+noremap <S-l> gt
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/<CR>
 
 " Open file under cursor in new tab
-map <F3> <Esc><C-W>gF<CR>:tabm<CR>
+nnoremap <leader>to <Esc><C-W>gF<CR>:tabm<CR>
+
+" Fast saving and fast quitting
+noremap <leader>w :w!<CR>
+noremap <leader>q :q<CR>
+
+" Change Emmet key
+let g:user_emmet_expandabbr_key='<Tab>'
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Competitive Programming
 "autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
@@ -101,5 +115,3 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-" Snippets
-"nnoremap ,cpp :-1read $HOME/.vim/snippets/solve.cpp<CR>12j

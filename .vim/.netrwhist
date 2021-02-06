@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/kessyus/Projects/Bootcamp/myRepository/Nivelamento/semana-nivelamento-frontend'
+let g:netrw_dirhist_5='/Users/kessyus/Projects/Bootcamp/myRepository/Nivelamento'
+let g:netrw_dirhist_4='/Users/kessyus/Projects/Bootcamp/myRepository'
+let g:netrw_dirhist_3='/Users/kessyus/Projects/Bootcamp'
+let g:netrw_dirhist_2='/Users/kessyus/Projects/Bootcamp/proposal-maker'
+let g:netrw_dirhist_1='/Users/kessyus/Projects/Bootcamp'
+let g:netrw_dirhist_0='/Users/kessyus/Projects'
+let g:netrw_dirhist_9='/Users/kessyus'
+let g:netrw_dirhist_8='/Users'
+let g:netrw_dirhist_7='/Users/kessyus'

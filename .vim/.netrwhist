@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/Users/kessyus/.dotfiles/.vim/pack/kessyus/start/emmet-vim'
-let g:netrw_dirhist_4='/Users/kessyus/.dotfiles/.vim/pack/kessyus/start'
-let g:netrw_dirhist_3='/Users/kessyus/.dotfiles/.vim/pack/kessyus'
-let g:netrw_dirhist_2='/Users/kessyus/.dotfiles/.vim/pack'
-let g:netrw_dirhist_1='/Users/kessyus/.dotfiles/.vim'

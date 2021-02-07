@@ -1,2 +1,4 @@
 .oh-my-zsh/
 .netrwhist
+plugged/
+autoload/

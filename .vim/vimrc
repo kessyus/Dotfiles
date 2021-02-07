@@ -8,20 +8,25 @@ endif
 " Plugins Section - start
 call plug#begin('~/.dotfiles/.vim/plugged')
 
+" Layout and Themes
 Plug 'morhetz/gruvbox'
-Plug 'pangloss/vim-javascript'
-Plug 'tpope/vim-fugitive'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+
+" Utility
+Plug 'neoclide/coc.nvim'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'neoclide/coc.nvim'
-Plug 'prettier/vim-prettier'
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Programming Language Support
+Plug 'HerringtonDarkholme/yats.vim'         " TypeScript
+Plug 'pangloss/vim-javascript'              " Javascript
+
+" Git integrations
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 " Plugins Section - end
@@ -30,11 +35,17 @@ syntax on
 
 colorscheme gruvbox
 set background=dark
+set t_Co=256
 
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 "colorscheme solarized
 "set background=dark
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 
 "
 " Settings
@@ -84,9 +95,6 @@ set et
 set tabstop=2                   " Number of spaces that a <Tab>
 set shiftwidth=2                " Number of spaces to use for each step autoindent
 set expandtab                   " Use the appropriate number of spaces
-
-" To open each buffer in its own tabpage
-:au BufAdd,BufNewFile * nested tab sball
 
 
 " CoC config
@@ -242,25 +250,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 
 
-" Nerdtree config
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-
 " Git Gutter
 set signcolumn=yes
 
@@ -277,10 +266,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '-'
 
 
-" Prettier config
-packloadal
-
-
 " Remap Personal Keyboard
 
 " Esc remap
@@ -295,15 +280,12 @@ noremap H gT
 noremap L gt
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/<CR>
-nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>       " Open file under cursor in new tab
-
-" Move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" Open file under cursor in new tab
+nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 
 " Change Emmet key
+let g:user_emmet_leader_key='<leader>'        " use with <leader>,
+let g:user_emmet_mode='i'                     " only enable in insert mode
 "let g:user_emmet_expandabbr_key='<Tab>'
 "imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 

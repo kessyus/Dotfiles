@@ -68,8 +68,9 @@ packloadal
 
 " Remap Personal Keyboard
 
-" Faster leaving to normal mode
-inoremap jk <ESC>
+" Esc remap
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Useful for tabs
 noremap <S-h> gT
@@ -78,7 +79,7 @@ nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/<CR>
 
 " Open file under cursor in new tab
-nnoremap <leader>to <Esc><C-W>gF<CR>:tabm<CR>
+nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 
 " Fast saving and fast quitting
 noremap <leader>w :w!<CR>

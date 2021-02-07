@@ -68,7 +68,7 @@ set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set path+=**                    " Search down into subfolders
 set wildmenu                    " Display all matching files when tab complete
-set cmdheight=2                 " Give more space for displaying messages
+"set cmdheight=2                 " Give more space for displaying messages
 set updatetime=300
 set ttyfast
 set conceallevel=0              " do not hide markdown

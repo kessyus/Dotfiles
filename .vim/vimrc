@@ -76,7 +76,6 @@ set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not when search pattern contains upper case characters
 set path+=**                    " Search down into subfolders
 set wildmenu                    " Display all matching files when tab complete
-"set cmdheight=2                 " Give more space for displaying messages
 set updatetime=300
 set ttyfast
 set conceallevel=0              " do not hide markdown
@@ -120,7 +119,7 @@ let g:gitgutter_sign_modified_removed = '-'
 
 " Esc remap
 inoremap jk <Esc>
-inoremap kj <Esc
+inoremap kj <Esc>
 
 " Disable highlights
 map <silent> <leader><CR> :noh<cr>>
@@ -136,7 +135,6 @@ nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 " Change Emmet key
 let g:user_emmet_expandabbr_key='<Tab>'
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-
 
 " Competitive Programming
 "autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>

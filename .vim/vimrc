@@ -86,7 +86,7 @@ set conceallevel=0              " do not hide markdown
 set wrap                        " Make Vim to handle long lines nicely.
 set textwidth=79
 set formatoptions=qrn1
-autocmd BufNewFile,BufRead *.html setlocal nowrap   " Wrapping off whenever working on an HTML file
+"autocmd BufNewFile,BufRead *.html setlocal nowrap   " Wrapping off whenever working on an HTML file
 set autoindent                  " Copy indent from current line to the next line
 set complete-=i
 set showmatch                   " When a bracket is inserted show the match
@@ -276,8 +276,8 @@ inoremap kj <Esc
 map <silent> <leader><CR> :noh<cr>>
 
 " Useful for tabs
-noremap H gT
-noremap L gt
+noremap <Left> gT
+noremap <Right> gt
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/<CR>
 " Open file under cursor in new tab
@@ -286,8 +286,6 @@ nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 " Change Emmet key
 let g:user_emmet_leader_key='<leader>'        " use with <leader>,
 let g:user_emmet_mode='i'                     " only enable in insert mode
-"let g:user_emmet_expandabbr_key='<Tab>'
-"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Competitive Programming
 "autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
@@ -315,4 +313,3 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-

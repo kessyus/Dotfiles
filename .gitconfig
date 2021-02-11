@@ -2,7 +2,7 @@
 	name = Kessyus Fófano
 	email = kessyus@gmail.com
 [core]
-  editor = vim
+  editor = code
 [alias]
   lg = !"git lg1"
   aa = add --all

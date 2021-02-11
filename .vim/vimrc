@@ -117,10 +117,6 @@ let g:gitgutter_sign_modified_removed = '-'
 
 " Remap Personal Keyboard
 
-" Esc remap
-inoremap jk <Esc>
-inoremap kj <Esc>
-
 " Disable highlights
 map <silent> <leader><CR> :noh<cr>>
 

@@ -37,6 +37,13 @@ function install {
   fi
 }
 
+# Install xcode developer tools (git, etc...)
+xcode-select --install
+
+# Update homebrew
+brew update
+brew upgrade
+
 # Install Apps
 install vim
 install tmux

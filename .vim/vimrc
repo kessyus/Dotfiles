@@ -5,18 +5,29 @@ if empty(glob('~/.dotfiles/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Plugins Section - start
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" *** Plugins Start ***
 call plug#begin('~/.dotfiles/.vim/plugged')
 
 " Layout and Themes
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'ap/vim-css-color'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " Utility
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vifm/vifm.vim'
+Plug 'unblevable/quick-scope'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
 
 " Programming Language Support
 Plug 'pangloss/vim-javascript'              " Javascript
@@ -26,18 +37,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-" Plugins Section - end
+" *** Plugins End ***
 
 syntax on
 
 colorscheme gruvbox
 set background=dark
-set t_Co=256
-
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
-"colorscheme solarized
-"set background=dark
+if !has('gui_running')
+  set t_Co=256
+endif
 
 if (has("termguicolors"))
   set termguicolors
@@ -82,7 +90,8 @@ set conceallevel=0              " do not hide markdown
 set wrap                        " Make Vim to handle long lines nicely.
 set textwidth=79
 set formatoptions=qrn1
-"autocmd BufNewFile,BufRead *.html setlocal nowrap   " Wrapping off whenever working on an HTML file
+" Wrapping off whenever working on an HTML file
+autocmd BufNewFile,BufRead *.html setlocal nowrap 
 set autoindent                  " Copy indent from current line to the next line
 set complete-=i
 set showmatch                   " When a bracket is inserted show the match
@@ -121,12 +130,17 @@ let g:gitgutter_sign_modified_removed = '-'
 map <silent> <leader><CR> :noh<cr>>
 
 " Useful for tabs
-noremap <Left> gT
-noremap <Right> gt
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<CR>/<CR>
+noremap H gT
+noremap L gt
 " Open file under cursor in new tab
 nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
+
+" Vifm
+map <leader>vf :Vifm<CR>
+map <leader>vs :VsplitVifm<CR>
+map <leader>vh :SplitVifm<CR>
+map <leader>dv :DiffVifm<CR>
+map <leader>tv :TabVifm<CR>
 
 " Change Emmet key
 let g:user_emmet_expandabbr_key='<Tab>'

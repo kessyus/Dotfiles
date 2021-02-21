@@ -11,11 +11,12 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
-" *** Plugins Start ***
+"*** Plugins Start ***
 call plug#begin('~/.dotfiles/.vim/plugged')
 
 " Layout and Themes
 Plug 'dracula/vim'
+Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
@@ -43,8 +44,7 @@ call plug#end()
 
 syntax on
 
-colorscheme dracula
-set background=dark
+colorscheme onedark
 if !has('gui_running')
   set t_Co=256
 endif
@@ -127,22 +127,26 @@ let g:gitgutter_sign_modified_removed = '-'
 
 " Remap Personal Keyboard
 
+map <Space> <Leader>
+
+" Go to beginning or end of a line easier
+noremap H 0
+noremap L $
+
 " Disable highlights
 map <silent> <leader><CR> :noh<cr>>
 
 " Useful for tabs
-noremap H gT
-noremap L gt
+noremap <Tab> gT
+noremap <S-Tab> gt
 " Open file under cursor in new tab
 nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 
 " Vifm
-map <leader>vf :Vifm<CR>
-map <leader>vs :VsplitVifm<CR>
-map <leader>vh :SplitVifm<CR>
-map <leader>dv :DiffVifm<CR>
-map <leader>tv :TabVifm<CR>
-
+map <leader>fe :TabVifm<CR>
+map <leader>fv :VsplitVifm<CR>
+map <leader>fh :SplitVifm<CR>
+map <leader>fd :DiffVifm<CR>
 
 " Competitive Programming
 "autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
@@ -158,12 +162,6 @@ map <leader>tv :TabVifm<CR>
 " Run
 "autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
 
-" Map windows navigation
-nnoremap <silent> <Up> :wincmd k<CR>
-nnoremap <silent> <Down> :wincmd j<CR>
-nnoremap <silent> <Left> :wincmd h<CR>
-nnoremap <silent> <Right> :wincmd l<CR>
-
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
 nnoremap <silent> j gj
@@ -171,8 +169,6 @@ nnoremap <silent> <Up> gk
 nnoremap <silent> <Down> gj
 
 " Tabs and Shift Tabs works like other editors
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
+inoremap <s-tab> <c-d>
+vnoremap <tab> >gv
 vnoremap <S-Tab> <gv

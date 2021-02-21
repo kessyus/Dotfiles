@@ -19,7 +19,7 @@ alias ff="find . -type f 2>/dev/null -name"
 ### exports ###
 #
 # Path
-export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/Library/Python/3.7/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$PATH
+export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$PATH
 # Dotfiles
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
@@ -31,7 +31,7 @@ export ZSH="$DOTFILES_PATH/.oh-my-zsh"
 # Default Language
 export LANG=en_US.UTF-8
 # Default Editor
-export EDITOR='code'
+export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
 
@@ -105,8 +105,9 @@ function virev {
 plugins=(
           git
           vi-mode
-          man
           osx
+          docker
+          man
           colored-man-pages
           common-aliases
           tmux

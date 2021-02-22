@@ -10,16 +10,24 @@ fi
 alias grep="grep --color=auto"
 alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} "
 alias :q="exit"
+alias :Q="exit"
+alias cls="clear"
 alias follow="tail -f -n +1"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
 alias fd="find . -type d 2>/dev/null -name"
 alias ff="find . -type f 2>/dev/null -name"
+alias python="python3"
+alias pip="pip3"
+alias lsd="ls -ld *(-/DN)"
+alias todo="vim ~/Desktop/TODO.txt"
+alias htop="htop -d 2" 
+
 
 ### exports ###
 #
 # Path
-export PATH=$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$PATH
+export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$PATH
 # Dotfiles
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
@@ -34,22 +42,8 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
-
-### codi ###
-#
-# Codi
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python3}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
+# Vifm folder
+export MYVIFMRC='~/.vifm/vifmrc'
 
 ### theme ###
 #
@@ -59,13 +53,9 @@ codi() {
 #DEFAULT_USER=kessyus
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
+
 ### functions ####
 #
-# Open all modified files in vim tabs
-function vimod {
-    vim -p $(git status -suall | awk '{print $2}')
-}
-
 # Add Commit Push at once
 # Usage:
 # acp "commit message"
@@ -73,6 +63,11 @@ function acp() {
   git add .
   git commit -m "$1"
   git push
+}
+
+# Open all modified files in vim tabs
+function vimod {
+    vim -p $(git status -suall | awk '{print $2}')
 }
 
 # Open files modified in a git commit in vim tabs; defaults to HEAD.
@@ -99,6 +94,13 @@ function virev {
     fi
     vim -p ${toOpen}
 }
+
+function update {
+  brew update
+  brew upgrade
+  brew cleanup
+}
+
 
 ### plugins ###
 #

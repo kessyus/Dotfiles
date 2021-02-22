@@ -43,10 +43,13 @@ xcode-select --install
 # Update homebrew
 brew update
 brew upgrade
+brew cleanup
 
 # Install Apps
-install vim
+install vim # MacOs default version is stuck with Python2 >.<
 install tmux
+install htop
+install ffmpeg
 install iterm2
 install romkatv/powerlevel10k/powerlevel10k
 
@@ -55,6 +58,7 @@ linkDotfile .vim
 linkDotfile .zshrc
 linkDotfile .gitconfig
 linkDotfile .p10k.zsh
+linkDotfile .vifm
 
 # Update Git Submodules
 git submodule init

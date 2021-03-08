@@ -32,18 +32,14 @@ export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
 export LD_LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
-# Golang
-export GOPATH=$HOME/Scripts/go
 # zsh
 export ZSH="$DOTFILES_PATH/.oh-my-zsh"
 # Default Language
-export LANG=en_US.UTF-8
+export LANG=pt_BR.UTF-8
 # Default Editor
 export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
-# Vifm folder
-export MYVIFMRC='~/.vifm/vifmrc'
 
 ### theme ###
 #

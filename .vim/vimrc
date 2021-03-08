@@ -15,9 +15,9 @@ autocmd VimEnter *
 call plug#begin('~/.dotfiles/.vim/plugged')
 
 " === Layout and Themes ==============
-Plug 'dracula/vim'
+"Plug 'dracula/vim'
+"Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'ap/vim-css-color'
@@ -26,7 +26,6 @@ Plug 'mhinz/vim-startify'
 
 " === Utility ========================
 Plug 'jiangmiao/auto-pairs'
-Plug 'vifm/vifm.vim'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -119,6 +118,7 @@ set formatoptions=qrn1
 " Wrapping off whenever working on an HTML file
 autocmd BufNewFile,BufRead *.html setlocal nowrap 
 set autoindent                  " Copy indent from current line to the next line
+set smartindent                 " Reacts to the syntax of the code
 set complete-=i
 set showmatch                   " When a bracket is inserted show the match
 set smarttab
@@ -129,11 +129,6 @@ set expandtab                   " Use the appropriate number of spaces
 
 
 " CoC Config
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>do  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -321,11 +316,11 @@ let g:OmniSharp_server_type = 'roslyn'
 map <Space> <Leader>
 
 " Go to beginning or end of a line easier
-noremap H 0
-noremap L $
+nnoremap H 0
+nnoremap L $
 
 " Disable highlights
-map <silent> <leader>no :noh<cr>>
+nnoremap <silent> <leader>no :noh<cr>
 
 " Move current line up/down
 " ˚ and ∆ are <Alt-k> and <Alt-j> respectly on my keyboard
@@ -337,16 +332,10 @@ vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
 " Useful for tabs
-noremap <Tab> gT
-noremap <S-Tab> gt
+nnoremap <Tab> gT
+nnoremap <S-Tab> gt
 " Open file under cursor in new tab
 nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
-
-" Vifm
-map <leader>fe :TabVifm<CR>
-map <leader>fv :VsplitVifm<CR>
-map <leader>fh :SplitVifm<CR>
-map <leader>fd :DiffVifm<CR>
 
 " Competitive Programming
 "autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
@@ -354,13 +343,15 @@ map <leader>fd :DiffVifm<CR>
 "autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
 
 " Programming
-"autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
-"autocmd filetype go nnoremap <F5> <Esc>:w!<CR>:!clear; go build % && ./%:r<CR>
-"autocmd filetype java nnoremap <F5> <Esc>:w!<CR>:!clear; javac %<CR>
+" Run file
+autocmd filetype javascript nnoremap <F5> <Esc>:w!<CR>:!clear; node %<CR>
+autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
+autocmd filetype go nnoremap <F5> <Esc>:w!<CR>:!clear; go build % && ./%:r<CR>
+autocmd filetype java nnoremap <F5> <Esc>:w!<CR>:!clear; java %:r.class<CR>
+autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
 " Compile
-"autocmd filetype cpp nnoremap <F4> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++17 -Wall;<CR>
-" Run
-"autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
+autocmd filetype java nnoremap <F6> <Esc>:w!<CR>:!clear; javac %<CR>
+autocmd filetype cpp nnoremap <F6> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++17 -Wall;<CR>
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
@@ -369,6 +360,6 @@ nnoremap <silent> <Up> gk
 nnoremap <silent> <Down> gj
 
 " Tabs and Shift Tabs works like other editors
-inoremap <s-tab> <c-d>
+inoremap <S-tab> <c-d>
 vnoremap <tab> >gv
 vnoremap <S-Tab> <gv

@@ -1,3 +1,12 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule "forgit"]
+	path = forgit
+	url = https://github.com/wfxr/forgit.git
+[submodule "emoji-cli"]
+	path = emoji-cli
+	url = https://github.com/wfxr/emoji-cli.git
+[submodule "diff-so-fancy"]
+	path = diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git

@@ -54,6 +54,8 @@ install htop
 install ffmpeg
 install iterm2
 install romkatv/powerlevel10k/powerlevel10k
+install zsh-syntax-highlighting
+install zsh-autosuggestions
 
 # Link dotfiles
 linkDotfile .vim
@@ -62,6 +64,5 @@ linkDotfile .gitconfig
 linkDotfile .p10k.zsh
 linkDotfile .fzf.zsh
 
-# Update Git Submodules
-git submodule init
+# Update submodules
 git submodule update --remote --merge

@@ -3,6 +3,7 @@
 	email = kessyus@gmail.com
 [core]
   editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
   lg = !"git lg1"
   aa = add --all
@@ -52,3 +53,5 @@
 	clean = git-lfs clean -- %f
 [credential]
 	helper = osxkeychain
+[interactive]
+	diffFilter = diff-so-fancy --patch

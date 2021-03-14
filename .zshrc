@@ -7,27 +7,22 @@ fi
 
 ### alias ###
 #
-alias grep="grep --color=auto"
-alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} "
 alias :q="exit"
-alias :Q="exit"
-alias cls="clear"
 alias follow="tail -f -n +1"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
-alias fd="find . -type d -name"
-alias ff="find . -type f -name"
 alias python="python3"
 alias pip="pip3"
 alias lsd="ls -ld *(-/DN)"
 alias todo="vim ~/Desktop/TODO.txt"
 alias htop="htop -d 2" 
 alias cat="bat"
+alias gco="git branch | fzf | xargs git checkout"
 
 ### exports ###
 #
 # Path
-export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$HOME/.flutter/bin:$PATH
+export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$HOME/.flutter/bin:$HOME/.dotfiles/diff-so-fancy:$PATH
 # Dotfiles
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
@@ -41,8 +36,8 @@ export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
 # FZF config
-export FZF_DEFAULT_COMMAND='rg --files'
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS='-m --height 40% --border'
 
 ### theme ###
 #
@@ -152,3 +147,15 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Fzf useful key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Zsh Syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Zsh autosuggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Forgit
+source ~/.dotfiles/forgit/forgit.plugin.zsh
+
+# Emoji-cli
+source ~/.dotfiles/emoji-cli/fuzzy-emoji-zle.zsh

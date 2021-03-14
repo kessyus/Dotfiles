@@ -1,4 +1,29 @@
+# Wildcards
+*~
+
+# Directories
 .oh-my-zsh/
-.netrwhist
 plugged/
 autoload/
+auto-save-list/
+contrib/
+elpa/
+emojis/
+eshell/
+games/
+image-dired/
+thumbs/
+transient/
+url/
+var/
+
+# Files
+.DS_Store
+.netrwhist
+abbrev_defs
+ac-comphist.dat
+bookmarks
+history
+network-security.data
+oauth2.plstore
+tramp

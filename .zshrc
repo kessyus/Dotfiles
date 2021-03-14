@@ -15,19 +15,19 @@ alias cls="clear"
 alias follow="tail -f -n +1"
 alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
-alias fd="find . -type d 2>/dev/null -name"
-alias ff="find . -type f 2>/dev/null -name"
+alias fd="find . -type d -name"
+alias ff="find . -type f -name"
 alias python="python3"
 alias pip="pip3"
 alias lsd="ls -ld *(-/DN)"
 alias todo="vim ~/Desktop/TODO.txt"
 alias htop="htop -d 2" 
-
+alias cat="bat"
 
 ### exports ###
 #
 # Path
-export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$PATH
+export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:$HOME/usr/local/opt/node@14/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$HOME/.flutter/bin:$PATH
 # Dotfiles
 export DOTFILES_PATH=$HOME/.dotfiles
 # Lib
@@ -40,13 +40,13 @@ export LANG=pt_BR.UTF-8
 export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
+# FZF config
+export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
 ### theme ###
 #
 # Local theme
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-#DEFAULT_USER=kessyus
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 
@@ -91,10 +91,37 @@ function virev {
     vim -p ${toOpen}
 }
 
-function update {
+### upgrade homebrew ###
+#
+function update() {
   brew update
   brew upgrade
   brew cleanup
+}
+
+
+### docker functions ###
+#
+# Select a docker container to run
+function dr() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid"
+}
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+# Select a docker container to remove
+function drm() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker rm "$cid"
 }
 
 
@@ -102,13 +129,13 @@ function update {
 #
 plugins=(
           git
+          git-prompt
           vi-mode
           osx
           docker
           man
           colored-man-pages
           common-aliases
-          tmux
         )
 
 
@@ -122,3 +149,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Fzf useful key bindings and fuzzy completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

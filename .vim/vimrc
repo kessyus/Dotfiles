@@ -1,3 +1,30 @@
+" vimrc --- My Vim Setup
+"
+" Author: Kessyus Fófano <kessyus@gmail.com>
+"
+" Copyright (C) 2012-2021  Kessyus Fófano
+"
+" This program is free software: you can redistribute it and/or modify
+" it under the terms of the GNU General Public License as published by
+" the Free Software Foundation, either version 3 of the License, or
+" (at your option) any later version.
+"
+" This program is distributed in the hope that it will be useful,
+" but WITHOUT ANY WARRANTY; without even the implied warranty of
+" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+" GNU General Public License for more details.
+"
+" You should have received a copy of the GNU General Public License
+" along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"
+" Commentary:
+"
+" Entry point for my Vim setup.  This module's main goal is to load
+" Vim configuration the way I'm pleased to use it. =]
+"
+" Code:
+
+
 " Search for plug.vim if doesn't exist then download it.
 if empty(glob('~/.dotfiles/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -22,7 +49,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'ap/vim-css-color'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 
 " === Utility ========================
 Plug 'jiangmiao/auto-pairs'
@@ -31,6 +58,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'psliwka/vim-smoothie'
 Plug 'beautify-web/js-beautify'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " === Conquer of Completion =========
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -66,6 +95,9 @@ call plug#end()
 " *** Plugins End ********************
 
 
+" Not vi compatible
+set nocompatible
+
 syntax on
 
 colorscheme onedark
@@ -77,10 +109,15 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+" Keep iterm2 transparency
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+
+
 "
 " Settings
 "
-set noerrorbells                " No beeps
+set noerrorbells visualbell t_vb= " No beeps
 set number                      " Show line numbers
 set relativenumber              " Relative line numbers 
 set backspace=indent,eol,start  " Makes backspace key more powerful.
@@ -88,19 +125,20 @@ set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set title                       " Show title of the file on term window
 set wildmenu
-set mouse=a                     " Enable the use of the mouse
+set mouse+=a                     " Enable the use of the mouse
 set shortmess+=A                " Don't show annoying msg when theres a swap file
 set shortmess+=c                " Don't pass messages to ins-completion-menu
+set shortmess+=I                " Disable the default Vim startup message
 set noswapfile                  " Don't use swapfile
 set nobackup                    " Don't create annoying backup files
 set nowritebackup
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
-set encoding=utf-8              " Set default encoding to UTF-8
+set encoding=UTF-8              " Set default encoding to UTF-8
 set autowrite                   " Automatically save before :next, :make etc.
 set autochdir                   " Autochange working directory based on current file
 set autoread                    " Automatically reread changed files without asking me anything
-set laststatus=2
+set laststatus=2                " Always show the status line at bottom"
 set hidden
 set ruler                       " Show the cursor position all the time
 set incsearch                   " Shows the match while typing
@@ -126,6 +164,17 @@ set et
 set tabstop=2                   " Number of spaces that a <Tab>
 set shiftwidth=2                " Number of spaces to use for each step autoindent
 set expandtab                   " Use the appropriate number of spaces
+set splitbelow                  " Open new split panes to bottom
+set splitright                  " Open new split panes to right
+
+
+" Fzf Config
+nnoremap <leader>fo :Files<CR>
+nnoremap <leader>bu :Buffers<CR>
+nnoremap <leader>wi :Windows<CR>
+nnoremap <leader>hi :History<CR>
+nnoremap <silent> <leader>gc :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
 
 
 " CoC Config
@@ -295,12 +344,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '-'
 
 
-" Startify Config
-let g:startify_bookmarks = ['~/Projects/Bootcamp', '~/Projects', '~/.vim/vimrc', '~/.zshrc']
-let g:startify_change_to_dir = 0
-let g:startify_files_number = 8
-
-
 " OmniSharp Config
 let g:Omnisharp_start_server = 0
 let g:Omnisharp_stop_server  = 0
@@ -311,16 +354,17 @@ let g:OmniSharp_server_type = 'v1'
 let g:OmniSharp_server_type = 'roslyn'
 
 
+" Fugitive
+set tags^=.git/tags;~
+
+
 " Remap Personal Keyboard
 
 map <Space> <Leader>
 
 " Go to beginning or end of a line easier
-nnoremap H 0
+nnoremap H ^
 nnoremap L $
-
-" Disable highlights
-nnoremap <silent> <leader>no :noh<cr>
 
 " Move current line up/down
 " ˚ and ∆ are <Alt-k> and <Alt-j> respectly on my keyboard
@@ -363,3 +407,16 @@ nnoremap <silent> <Down> gj
 inoremap <S-tab> <c-d>
 vnoremap <tab> >gv
 vnoremap <S-Tab> <gv
+
+" Unbind some useless/annoying default key bindings.
+" 'Q' in normal mode enters Ex mode. You almost never want this.
+nmap Q <Nop>
+" Unbind for tmux
+map <C-a> <Nop>
+map <C-x> <Nop>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l

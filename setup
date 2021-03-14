@@ -50,10 +50,11 @@ install vim # MacOs default version is stuck with Python2 >.<
 install fzf
 install bat
 install ripgrep
+install exa
+install starship
 install htop
 install ffmpeg
 install iterm2
-install romkatv/powerlevel10k/powerlevel10k
 install zsh-syntax-highlighting
 install zsh-autosuggestions
 
@@ -61,8 +62,6 @@ install zsh-autosuggestions
 linkDotfile .vim
 linkDotfile .zshrc
 linkDotfile .gitconfig
-linkDotfile .p10k.zsh
-linkDotfile .fzf.zsh
 
 # Update submodules
 git submodule update --remote --merge

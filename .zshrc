@@ -1,24 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-### alias ###
-#
-alias :q="exit"
-alias follow="tail -f -n +1"
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vim/vimrc"
-alias python="python3"
-alias pip="pip3"
-alias lsd="ls -ld *(-/DN)"
-alias todo="vim ~/Desktop/TODO.txt"
-alias htop="htop -d 2" 
-alias cat="bat"
-alias gco="git branch | fzf | xargs git checkout"
-
 ### exports ###
 #
 # Path
@@ -36,13 +15,8 @@ export EDITOR='vim'
 # NodeJS testing port
 export PORT='3001'
 # FZF config
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='-m --height 40% --border'
-
-### theme ###
-#
-# Local theme
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 
 ### functions ####
@@ -95,31 +69,6 @@ function update() {
 }
 
 
-### docker functions ###
-#
-# Select a docker container to run
-function dr() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker start "$cid"
-}
-# Select a running docker container to stop
-function ds() {
-  local cid
-  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker stop "$cid"
-}
-# Select a docker container to remove
-function drm() {
-  local cid
-  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
-
-  [ -n "$cid" ] && docker rm "$cid"
-}
-
-
 ### plugins ###
 #
 plugins=(
@@ -127,10 +76,8 @@ plugins=(
           git-prompt
           vi-mode
           osx
-          docker
           man
           colored-man-pages
-          common-aliases
         )
 
 
@@ -141,9 +88,6 @@ DISABLE_AUTO_TITLE="true"
 
 source $ZSH/oh-my-zsh.sh
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Fzf useful key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -159,3 +103,24 @@ source ~/.dotfiles/forgit/forgit.plugin.zsh
 
 # Emoji-cli
 source ~/.dotfiles/emoji-cli/fuzzy-emoji-zle.zsh
+
+
+### alias ###
+#
+alias l='exa'
+alias ls='exa -l'
+alias la='exa -la'
+alias :q="exit"
+alias follow="tail -f -n +1"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vim/vimrc"
+alias python="python3"
+alias pip="pip3"
+alias lsd="ls -ld *(-/DN)"
+alias todo="vim ~/Desktop/TODO.txt"
+alias cat="bat"
+alias gco="git branch | fzf | xargs git checkout"
+
+
+# Starship - Needs to be in the end of zshrc
+eval "$(starship init zsh)"

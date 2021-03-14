@@ -3,6 +3,9 @@
 
 # Directories
 .oh-my-zsh/
+diff-so-fancy/
+emoji-cli/
+forgit/
 plugged/
 autoload/
 auto-save-list/

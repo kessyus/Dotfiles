@@ -21,15 +21,15 @@
   ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
   ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
   le = log --oneline --decorate
-  lnc = log --pretty=format:"%h\\ %s\\ [%cn]" 
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
   lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%	C(reset) %C(dim white)- %an%C(reset)' --all
   mm = merge --no-ff
   st = status --short --branch
-  tg = tag -a 
+  tg = tag -a
   pu = push --tags
-  un = reset --hard HEAD  
+  un = reset --hard HEAD
   uh = reset --hard HEAD
   rm-untracked = !rm $(git ls-files --other --exclude-standard)
 [color]
@@ -39,10 +39,10 @@
 [color "status"]
   added = green
   changed = blue
-  untracked = red 
+  untracked = red
 [color "diff"]
   meta = yellow
-  old = red 
+  old = red
   new = green
 [push]
   default = current
@@ -53,5 +53,3 @@
 	clean = git-lfs clean -- %f
 [credential]
 	helper = osxkeychain
-[interactive]
-	diffFilter = diff-so-fancy --patch

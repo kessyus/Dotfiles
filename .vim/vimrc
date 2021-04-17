@@ -42,50 +42,39 @@ autocmd VimEnter *
 call plug#begin('~/.dotfiles/.vim/plugged')
 
 " === Layout and Themes ==============
-"Plug 'dracula/vim'
-"Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
-Plug 'ap/vim-css-color'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'ryanoasis/vim-devicons'
 
 " === Utility ========================
-Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'psliwka/vim-smoothie'
-Plug 'beautify-web/js-beautify'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" === Conquer of Completion =========
+" === Programming ====================
+Plug 'pangloss/vim-javascript'    " JavaScript support
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+
+" === Conquer of Completion ==========
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
+  \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-json',
-  \ 'coc-css',
-  \ 'coc-solargraph',
-  \ 'coc-html',
-  \ 'coc-yaml',
-  \ 'coc-prettier'
+  \ 'coc-highlight',
   \ ]
 
-" === Programming Language Support ===
-"
-" === Javascript =====================
-Plug 'pangloss/vim-javascript'
-Plug 'moll/vim-node'
-Plug 'jparise/vim-graphql'
-Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
-" === C# =============================
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'OrangeT/vim-csharp'
-" === Rust ========================== 
-Plug 'rust-lang/rust.vim'
+" Add CoC Prettier if prettier is installed
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+" Add CoC ESLint if ESLint is installed
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
 
 " === Git integrations ===============
 Plug 'tpope/vim-fugitive'
@@ -119,25 +108,28 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 "
 set noerrorbells visualbell t_vb= " No beeps
 set number                      " Show line numbers
-set relativenumber              " Relative line numbers 
+set relativenumber              " Relative line numbers
+set list                        " Display unprintable characters f12 - switches
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set title                       " Show title of the file on term window
 set wildmenu
 set mouse+=a                     " Enable the use of the mouse
-set shortmess+=A                " Don't show annoying msg when theres a swap file set shortmess+=c                " Don't pass messages to ins-completion-menu
+set shortmess+=A                " Don't show annoying msg when theres a swap file
+set shortmess+=c                " Don't pass messages to ins-completion-menu
 set shortmess+=I                " Disable the default Vim startup message
 set noswapfile                  " Don't use swapfile
 set nobackup                    " Don't create annoying backup files
 set nowritebackup
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
-set encoding=UTF-8              " Set default encoding to UTF-8
+set encoding=utf-8              " Set default encoding to UTF-8
 set autowrite                   " Automatically save before :next, :make etc.
 set autochdir                   " Autochange working directory based on current file
 set autoread                    " Automatically reread changed files without asking me anything
-set laststatus=2                " Always show the status line at bottom"
+set laststatus=2                " Always show the status line at bottom
 set hidden
 set ruler                       " Show the cursor position all the time
 set incsearch                   " Shows the match while typing
@@ -163,22 +155,20 @@ set shiftwidth=2                " Number of spaces to use for each step autoinde
 set expandtab                   " Use the appropriate number of spaces
 set splitbelow                  " Open new split panes to bottom
 set splitright                  " Open new split panes to right
+set foldmethod=syntax           " Enable folding
+set foldlevel=99                " Folding
+set clipboard=unnamed           " Allow copy and paste from system clipboard
 " Wrapping off whenever working on an HTML file
-autocmd BufNewFile,BufRead *.html setlocal nowrap 
+autocmd BufNewFile,BufRead *.html setlocal nowrap
+" Delete empty space from the end of lines on every save
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 " Fzf Config
-set rtp+=~/.fzf.zsh
-set rtp+=/usr/local/opt/fzf
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <Leader>s :BLines<cr>
-" Search inside files of the project folder
-nnoremap <silent> \ :Rg<CR>
-" Make :Rg ignore filenames
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
-" Change vim to use ripgrep instead of grep
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
 set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
-
 
 
 " CoC Config
@@ -190,7 +180,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -201,11 +191,6 @@ endfunction
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -232,21 +217,31 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
+" CoC SCSS files
+autocmd FileType scss setl iskeyword+=@-@
+
 
 " Formatters
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
 au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType html setlocal formatprg=prettier\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
 
 
 " Airline config
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='powerlineish'
-
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+let g:airline#extensions#tabline#buffers_label = ''
+let g:airline#extensions#tabline#fnamemod = ':t' " Show the filename
+let g:airline#extensions#tabline#fnamecollapse = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_close_button = 0
 
 " Git Gutter
 set signcolumn=yes
@@ -259,17 +254,6 @@ let g:gitgutter_sign_modified = '✹'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '-'
-
-
-" OmniSharp Config
-let g:Omnisharp_start_server = 0
-let g:Omnisharp_stop_server  = 0
-let g:OmniSharp_host = "http://localhost:20001"
-let g:ycm_csharp_server_port = 20001
-let g:OmniSharp_timeout = 1
-let g:OmniSharp_server_type = 'v1'
-let g:OmniSharp_server_type = 'roslyn'
-
 
 " Fugitive
 set tags^=.git/tags;~
@@ -292,8 +276,9 @@ vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
 " Useful for tabs
-nnoremap <Tab> gT
-nnoremap <S-Tab> gt
+nnoremap <F7> gt
+nnoremap <F8> :tabnew<CR>
+nnoremap <F9> gT
 " Open file under cursor in new tab
 nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 
@@ -324,15 +309,30 @@ inoremap <S-tab> <c-d>
 vnoremap <tab> >gv
 vnoremap <S-Tab> <gv
 
+" Vertically split screen
+nnoremap <silent><leader>\ :vs<CR>
+" Split screen
+nnoremap <silent><leader>/ :split<CR>
+
+" Faster saving and exiting
+nnoremap <silent><leader>w :w!<CR>
+nnoremap <silent><leader>q :q!<CR>
+
+" Extra <CR> is for disabling /"Press ENTER or type command to continue/"
+nnoremap <silent><leader>e :Exp<CR><CR>
+
+" Enable folding with z key
+nmap z za
+
+" Easier movement between split windows CTRL + {h, j, k, l}
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 " Unbind some useless/annoying default key bindings.
 " 'Q' in normal mode enters Ex mode. You almost never want this.
 nmap Q <Nop>
 " Unbind for tmux
 map <C-a> <Nop>
 map <C-x> <Nop>
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l

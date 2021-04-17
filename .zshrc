@@ -12,11 +12,10 @@ export ZSH="$DOTFILES_PATH/.oh-my-zsh"
 export LANG=pt_BR.UTF-8
 # Default Editor
 export EDITOR='vim'
-# NodeJS testing port
-export PORT='3001'
 # FZF config
 export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='-m --height 40% --border'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 ### functions ####
@@ -36,7 +35,7 @@ function vimod {
 }
 
 # Open files modified in a git commit in vim tabs; defaults to HEAD.
-# Examples: 
+# Examples:
 #     virev 49808d5
 #     virev HEAD~3
 function virev {
@@ -75,6 +74,7 @@ plugins=(
           git
           git-prompt
           vi-mode
+          docker
           osx
           man
           colored-man-pages
@@ -86,7 +86,6 @@ plugins=(
 # Fix Mac Terminal
 DISABLE_AUTO_TITLE="true"
 
-source $ZSH/oh-my-zsh.sh
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Fzf useful key bindings and fuzzy completion
@@ -97,12 +96,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Zsh autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Forgit
-source ~/.dotfiles/forgit/forgit.plugin.zsh
-
-# Emoji-cli
-source ~/.dotfiles/emoji-cli/fuzzy-emoji-zle.zsh
 
 
 ### alias ###

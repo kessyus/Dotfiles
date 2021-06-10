@@ -1,13 +1,15 @@
 ### exports ###
 #
 # Path
-export PATH=/usr/local/bin:$HOME/Scripts/go/bin:/usr/local/bin:$HOME/.cargo/bin:/usr/local/opt/python/libexec/bin:/Users/kessyus/Library/Python/3.8/bin:$HOME/.dotfiles/bin:$HOME/.flutter/bin:$HOME/.dotfiles/diff-so-fancy:$PATH
-# Dotfiles
-export DOTFILES_PATH=$HOME/.dotfiles
+export PATH=$PATH:/usr/local/bin:$HOME/.cargo/env:$HOME/.dotfiles/bin:$HOME:/.dotnet/tools
+# Android Dev
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Lib
 export LD_LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
-# zsh
-export ZSH="$DOTFILES_PATH/.oh-my-zsh"
 # Default Language
 export LANG=pt_BR.UTF-8
 # Default Editor
@@ -16,7 +18,8 @@ export EDITOR='vim'
 export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='-m --height 40% --border'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
+# Hackerrank
+export OUTPUT_PATH=$PWD/.output
 
 ### functions ####
 #

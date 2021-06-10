@@ -28,15 +28,15 @@
 " Search for plug.vim if doesn't exist then download it.
 if empty(glob('~/.dotfiles/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Automatically install missing plugins on startup
 autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+      \|   PlugInstall --sync | q
+      \| endif
 
 " *** Plugins Start ******************
 call plug#begin('~/.dotfiles/.vim/plugged')
@@ -48,6 +48,8 @@ Plug 'vim-airline/vim-airline'
 
 " === Utility ========================
 Plug 'unblevable/quick-scope'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -59,11 +61,11 @@ Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
 " === Conquer of Completion ==========
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-json',
-  \ 'coc-highlight',
-  \ ]
+      \ 'coc-tsserver',
+      \ 'coc-json',
+      \ 'coc-prettier',
+      \ 'coc-eslint',
+      \ ]
 
 " Add CoC Prettier if prettier is installed
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -86,7 +88,6 @@ call plug#end()
 
 " Not vi compatible
 set nocompatible
-
 syntax on
 
 colorscheme onedark
@@ -98,10 +99,12 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" Keep iterm2 transparency
+" iTerm2 transparency and cursor type
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 "
 " Settings
@@ -109,6 +112,7 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 set noerrorbells visualbell t_vb= " No beeps
 set number                      " Show line numbers
 set relativenumber              " Relative line numbers
+set cursorline                  " Highlight current line
 set list                        " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 set backspace=indent,eol,start  " Makes backspace key more powerful.
@@ -155,8 +159,8 @@ set shiftwidth=2                " Number of spaces to use for each step autoinde
 set expandtab                   " Use the appropriate number of spaces
 set splitbelow                  " Open new split panes to bottom
 set splitright                  " Open new split panes to right
-set foldmethod=syntax           " Enable folding
-set foldlevel=99                " Folding
+set foldmethod=manual           " Folding Method
+set foldlevel=99                " All folds open when opening a file
 set clipboard=unnamed           " Allow copy and paste from system clipboard
 " Wrapping off whenever working on an HTML file
 autocmd BufNewFile,BufRead *.html setlocal nowrap
@@ -190,7 +194,7 @@ endfunction
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -262,6 +266,9 @@ set tags^=.git/tags;~
 " Remap Personal Keyboard
 map <Space> <Leader>
 
+" Copy the entire code
+map <Leader>y <Esc>:%y+<CR>
+
 " Go to beginning or end of a line easier
 nnoremap H ^
 nnoremap L $
@@ -283,20 +290,23 @@ nnoremap <F9> gT
 nnoremap <leader>go <Esc><C-W>gF<CR>:tabm<CR>
 
 " Competitive Programming
-"autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
-"autocmd filetype cpp nnoremap <F5> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14 -Wall<CR>
-"autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
+autocmd filetype cpp nnoremap <F4> <Esc>:tabnew input.txt<CR>
+autocmd filetype cpp nnoremap <F5> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++14 -Wall<CR>
+autocmd filetype cpp nnoremap <F6> <Esc>:!clear; ./%:r < input.txt<CR>
+autocmd filetype javascript nnoremap <F4> <Esc>:tabnew input.txt<CR>
+autocmd filetype javascript nnoremap <F5> <Esc>:w!<CR>:!clear; node % < input.txt<CR>
+autocmd filetype javascript nnoremap <F6> <Esc>:!clear; cat ~/.output<CR>
 
 " Programming
 " Run file
-autocmd filetype javascript nnoremap <F5> <Esc>:w!<CR>:!clear; node %<CR>
-autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
-autocmd filetype go nnoremap <F5> <Esc>:w!<CR>:!clear; go build % && ./%:r<CR>
-autocmd filetype java nnoremap <F5> <Esc>:w!<CR>:!clear; java %:r.class<CR>
-autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
+" autocmd filetype javascript nnoremap <F5> <Esc>:w!<CR>:!clear; node %<CR>
+" autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
+" autocmd filetype go nnoremap <F5> <Esc>:w!<CR>:!clear; go build % && ./%:r<CR>
+" autocmd filetype java nnoremap <F5> <Esc>:w!<CR>:!clear; java %:r.class<CR>
+" autocmd filetype cpp nnoremap <F5> <Esc>:!clear; ./%:r<CR>
 " Compile
-autocmd filetype java nnoremap <F6> <Esc>:w!<CR>:!clear; javac %<CR>
-autocmd filetype cpp nnoremap <F6> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++17 -Wall;<CR>
+" autocmd filetype java nnoremap <F6> <Esc>:w!<CR>:!clear; javac %<CR>
+" autocmd filetype cpp nnoremap <F6> <Esc>:w!<CR>:!clear; g++ % -o %:r -std=c++17 -Wall;<CR>
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
@@ -317,6 +327,9 @@ nnoremap <silent><leader>/ :split<CR>
 " Faster saving and exiting
 nnoremap <silent><leader>w :w!<CR>
 nnoremap <silent><leader>q :q!<CR>
+
+" Faster formating entire file
+"nnoremap <F5> gg=G
 
 " Extra <CR> is for disabling /"Press ENTER or type command to continue/"
 nnoremap <silent><leader>e :Exp<CR><CR>

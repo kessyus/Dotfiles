@@ -1,6 +1,6 @@
 #!/bin/bash
 dotfilesDir=$(pwd)
- 
+
 function linkDotfile {
   dest="${HOME}/${1}"
   dateStr=$(date +%Y-%m-%d-%H%M)
@@ -40,13 +40,15 @@ function install {
 # Install xcode developer tools (git, etc...)
 xcode-select --install 2> /dev/null
 
+brew tap "d12frosted/emacs-plus"
+
 # Update homebrew
 brew update
 brew upgrade
 brew cleanup
 
 # Install Apps
-install vim # MacOs default version is stuck with Python2 >.<
+install neovim
 install fzf
 install bat
 install ripgrep
@@ -54,14 +56,17 @@ install exa
 install starship
 install htop
 install ffmpeg
-install iterm2
-install zsh-syntax-highlighting
-install zsh-autosuggestions
+install tmux
+install antigen
 
 # Link dotfiles
-linkDotfile .vim
+linkDotfile .config/nvim/init.vim
+linkDotfile .config/nvim/coc-settings.json
+linkDotfile .config/nvim/lua/plugins.lua
+linkDotfile .config/alacritty
 linkDotfile .zshrc
 linkDotfile .gitconfig
+linkDotfile .tmux.conf
 
 # Update submodules
 git submodule update --remote --merge

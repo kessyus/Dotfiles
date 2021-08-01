@@ -49,6 +49,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'elixir-editors/vim-elixir'
+Plug 'vim-erlang/vim-erlang'
 
 " === Conquer of Completion ==========
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

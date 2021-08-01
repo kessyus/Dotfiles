@@ -96,6 +96,7 @@ nmap <leader>j :bprevious<CR>
 " autocmd filetype javascript nnoremap <F4> <Esc>:tabnew input.txt<CR>
 " autocmd filetype javascript nnoremap <F5> <Esc>:w!<CR>:!clear; node % < input.txt<CR>
 " autocmd filetype javascript nnoremap <F6> <Esc>:!clear; cat ~/.output<CR>
+" autocmd filetype python nnoremap <F5> <Esc>:w!<CR>:!clear; python3 %<CR>
 
 " Programming
 " Run file

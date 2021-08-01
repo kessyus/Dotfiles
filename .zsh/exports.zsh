@@ -29,9 +29,15 @@ export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='-m --height 40% --layout=reverse --border'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Starship config
+export STARSHIP_CONFIG=~/.dotfiles/.config/starship.toml
+
 # personal
 export PROJECT_HOME=$HOME/Projects
 
 # zsh_autosuggest
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/kessyus/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;

@@ -33,6 +33,12 @@ source ~/.dotfiles/.config/nvim/viml/options.vim
 source ~/.dotfiles/.config/nvim/viml/coc.vim
 source ~/.dotfiles/.config/nvim/viml/config.vim
 source ~/.dotfiles/.config/nvim/viml/keymap.vim
+source ~/.dotfiles/.config/nvim/viml/google_python_style.vim
 
 " Colorscheme
-colorscheme base16-gruvbox-dark-medium
+let base16colorspace=256
+colorscheme base16-classic-dark
+
+" Transparency in iTerm2
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE

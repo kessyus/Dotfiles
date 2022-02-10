@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
 " === Layout and Themes ==============
 Plug 'joshdick/onedark.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'dawikur/base16-vim-airline-themes'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'glepnir/dashboard-nvim'

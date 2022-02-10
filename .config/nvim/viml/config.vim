@@ -17,7 +17,7 @@ au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
 
 " Airline config
-let g:airline_theme='base16_gruvbox_dark_medium'
+let g:airline_theme='base16_classic_dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers

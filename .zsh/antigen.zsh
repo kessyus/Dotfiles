@@ -7,10 +7,9 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle docker
 antigen bundle docker-compose
-antigen bundle heroku
 antigen bundle pip
+antigen bundle heroku
 antigen bundle colored-man-pages
-antigen bundle command-not-found
 
 # Other Plugins
 antigen bundle zsh-users/zsh-completions path:src kind:fpath

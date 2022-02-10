@@ -48,6 +48,7 @@ brew upgrade
 brew cleanup
 
 # Install Apps
+install vim
 install neovim
 install fzf
 install bat
@@ -63,7 +64,9 @@ install antigen
 linkDotfile .config/nvim/init.vim
 linkDotfile .config/nvim/coc-settings.json
 linkDotfile .config/nvim/lua/plugins.lua
+linkDotfile .config/nvim/autoload/plug.vim
 linkDotfile .config/alacritty
+linkDotfile .config/starship.toml
 linkDotfile .zshrc
 linkDotfile .gitconfig
 linkDotfile .tmux.conf

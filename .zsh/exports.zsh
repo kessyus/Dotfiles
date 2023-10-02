@@ -21,9 +21,6 @@ export LANG=en_US.UTF-8
 # lib
 export LD_LIBRARY_PATH=/usr/local/lib:$LIBRARY_PATH
 
-# vimrc
-export MYVIMRC=$HOME/.dotfiles/config/nvim
-
 # FZF config
 export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='-m --height 40% --layout=reverse --border'

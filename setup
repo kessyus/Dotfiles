@@ -40,8 +40,6 @@ function install {
 # Install xcode developer tools (git, etc...)
 xcode-select --install 2> /dev/null
 
-brew tap "d12frosted/emacs-plus"
-
 # Update homebrew
 brew update
 brew upgrade
@@ -49,7 +47,6 @@ brew cleanup
 
 # Install Apps
 install vim
-install neovim
 install fzf
 install bat
 install ripgrep
@@ -58,18 +55,15 @@ install starship
 install htop
 install ffmpeg
 install tmux
-install antigen
+install warp
 
 # Link dotfiles
-linkDotfile .config/nvim/init.vim
-linkDotfile .config/nvim/coc-settings.json
-linkDotfile .config/nvim/lua/plugins.lua
-linkDotfile .config/nvim/autoload/plug.vim
-linkDotfile .config/alacritty
+linkDotfile .vimrc
 linkDotfile .config/starship.toml
 linkDotfile .zshrc
 linkDotfile .gitconfig
 linkDotfile .tmux.conf
 
 # Update submodules
+git submodule init
 git submodule update --remote --merge

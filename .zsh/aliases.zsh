@@ -6,12 +6,7 @@ alias grep='rg'
 alias :q="exit"
 alias follow="tail -f -n +1"
 alias cat="bat"
-
-# vim
-alias vimrc="vim ~/.config/nvim/init.vim"
-if (( $+commands[nvim] )); then
-    alias vim="nvim"
-fi
+alias dog="dog A NS"
 
 # python
 alias python="python3"
